@@ -1,0 +1,5 @@
+init:
+  - HELLO | WORLD!
+loop:
+  - SCREEN ONE | Testing...
+  - SCREEN TWO | Is this working?
