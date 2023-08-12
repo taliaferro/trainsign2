@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "trainsign2"
+requires-python = ">=3.9"
+dependencies = [
+    "fire",
+]
+dynamic = ["version"]
+
+[project.scripts]
+trainsign = "trainsign2.sign:main"
