@@ -1,3 +1,6 @@
+serial:
+  port: /dev/ttyACM0
+  baudrate: 9600
 init:
   - HELLO | WORLD!
 loop:
