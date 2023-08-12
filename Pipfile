@@ -10,4 +10,3 @@ trainsign2 = {editable = true, path = "."}
 
 [requires]
 python_version = "3.9"
-python_full_version = "3.9.17"

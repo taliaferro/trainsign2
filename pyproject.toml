@@ -8,6 +8,8 @@ name = "trainsign2"
 requires-python = ">=3.9"
 dependencies = [
     "fire",
+    "pydantic",
+    "pyyaml"
 ]
 dynamic = ["version"]
 
