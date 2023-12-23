@@ -10,7 +10,9 @@ dependencies = [
     "fire",
     "pydantic",
     "pyyaml",
-    "pyserial"
+    "pyserial",
+    "jinja2",
+    "requests"
 ]
 dynamic = ["version"]
 
