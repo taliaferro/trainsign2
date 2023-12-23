@@ -1,6 +1,6 @@
 import fire
 
-from .sign import Sign
+from trainsign2.sign import Sign
 
 
 def main():
