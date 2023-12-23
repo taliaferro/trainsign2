@@ -1,8 +1,9 @@
 import os
-from typing import Sequence
+from typing import Sequence, Union, Mapping
 
 from yaml import safe_load
-from pydantic import BaseModel, FilePath
+from pydantic import BaseModel, FilePath, HttpUrl, field_serializer
+from jinja2 import Template
 
 
 def load_config(path: os.PathLike):
@@ -17,7 +18,28 @@ class SerialConfig(BaseModel):
     baudrate: int = 9600
 
 
+class ClientConfig(BaseModel):
+    # these are the only ones we need to configure right now
+    # come back here if the API changes
+    url: HttpUrl = "https://api.511.org",
+    agency: str = "SF",
+    api_key: str = None,
+    rate_limit: int = 60,
+    limit_remaining: int = 60,
+
+    @field_serializer("url")
+    def url_is_string(url):
+        return str(url)
+
+class Screen(BaseModel):
+    template: str
+    duration: int = 3
+    context: dict = {}
+
+
+
 class Config(BaseModel):
+    client: ClientConfig
     serial: SerialConfig
-    init: Sequence[str]
-    loop: Sequence[str]
+    init: Sequence[Screen]
+    loop: Sequence[Screen]
