@@ -1,8 +1,24 @@
+agency: SF
+
+client:
+  base_url: http://api.511.org/
+  params:
+    api_key: <REDACTED>
+
 serial:
   port: /dev/ttyACM0
   baudrate: 9600
+
 init:
-  - HELLO | WORLD!
+  - template: |
+      SFTrainSign
+      for SF MUNI
+    duration: 3
+  - template: <3, James T
+    duration: 2
+
 loop:
-  - SCREEN ONE | Testing...
-  - SCREEN TWO | Is this working?
+  - template: |
+      {{ now("America/Los_Angeles", format="%H:%M") }}
+      sfmta.com
+    duration: 5
