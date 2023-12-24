@@ -80,7 +80,7 @@ class Screen(BaseModel):
 
 class Config(BaseModel):
     client: ClientConfig
-    serial: SerialConfig
+    serial: SerialConfig = None
     init: Sequence[Screen]
     loop: Sequence[Screen]
     logging: LoggingSystemConfig = LoggingSystemConfig()

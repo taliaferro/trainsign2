@@ -1,4 +1,5 @@
 import os
+import sys
 import logging
 import logging.config
 import asyncio
@@ -16,7 +17,8 @@ def _prepare_msg(message: str):
     message = message.replace("\n", "|")
     if "|" not in message:
         message += "|"
-    return message.encode()
+    return message
+    # return message.encode("utf-8")
 
 
 class Sign:
@@ -29,7 +31,11 @@ class Sign:
 
         self._logger = logging.getLogger(__name__)
 
-        self._serial = Serial(**self.config.serial.model_dump())
+        if self.config.serial is None:
+          self._output = sys.stdout
+        else:
+          self._output= Serial(**self.config.serial.model_dump())
+
         self._template_environment = Environment()
         self._template_environment.globals["now"] = time_format
 
@@ -81,4 +87,4 @@ class Sign:
         await asyncio.sleep(screen.duration)
 
     def write(self, message: str):
-        self._serial.write(_prepare_msg(message))
+        self._output.write(_prepare_msg(message))
