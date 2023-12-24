@@ -61,7 +61,10 @@ class Open511Client:
         return resp.json()
 
     def lines(self, operator_id: str = None, line_id: str = None) -> dict:
-        params = {"operator_id": operator_id if operator_id else self.agency, "line_id": line_id}
+        params = {
+            "operator_id": operator_id if operator_id else self.agency,
+            "line_id": line_id,
+        }
         return self._api_get("transit/lines", params=params).json()
 
     def stops(
@@ -82,10 +85,15 @@ class Open511Client:
         return self._api_get("transit/stops", params=params).json()
 
     def stop_places(self, operator_id: str = None, stop_id: str = None) -> dict:
-        params = {"operator_id": operator_id if operator_id else self.agency, "stop_id": stop_id}
+        params = {
+            "operator_id": operator_id if operator_id else self.agency,
+            "stop_id": stop_id,
+        }
         return self._api_get("transit/stopplaces", params=params).json()
 
-    def patterns(self, line_id: str, operator_id: str = None, pattern_id: str = None) -> dict:
+    def patterns(
+        self, line_id: str, operator_id: str = None, pattern_id: str = None
+    ) -> dict:
         params = {
             "operator_id": operator_id,
             "line_id": line_id,

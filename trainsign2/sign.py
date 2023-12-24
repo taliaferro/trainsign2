@@ -20,7 +20,6 @@ def _prepare_msg(message: str):
 
 
 class Sign:
-
     config: Config
 
     def __init__(self, config: Optional[os.PathLike]):

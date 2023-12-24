@@ -11,7 +11,9 @@ def load_config(path: os.PathLike):
     with open(path, "r") as config_fh:
         return Config(**safe_load(config_fh))
 
+
 # TODO add filter config schema
+
 
 class LogFormatterConfig(BaseModel):
     format: str = "%(asctime)s %(name)s %(levelname)s: %(message)"
@@ -46,7 +48,7 @@ class LoggingSystemConfig(BaseModel):
         "default": LogHandlerConfig(formatter="default")
     }
     loggers: dict[str, LoggerConfig] = {}
-    root: LoggerConfig = LoggerConfig(handlers=['default'])
+    root: LoggerConfig = LoggerConfig(handlers=["default"])
 
 
 class SerialConfig(BaseModel):
